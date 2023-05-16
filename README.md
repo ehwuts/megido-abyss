@@ -1,6 +1,6 @@
 # Megido Scripts
 
-Scripts for Megido: Abyss, the dark souls of dark souls of minecraft. [Server accepts 1.12.2 - 1.19](play.megido.xyz)
+Scripts for Megido: Abyss, the dark souls of dark souls of minecraft. [Server accepts 1.12.2 - 1.19](https://play.megido.xyz)
 
 ## License
 
