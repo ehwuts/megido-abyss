@@ -1,0 +1,19 @@
+body {
+  padding: 0 10px;
+  margin: 40px auto;
+  max-width: 800px;
+  color: #444;
+  font: 18px/1.5 sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+	body {
+	  background: #112;
+	  color: #cdd;
+	}
+	a:link { color: #5af }
+	a:visited { color: #89f; }
+}
+
+h1, h2, h3 { line-height:1.2 }
+div.inb { display: inline-block; }
