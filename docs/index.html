@@ -30,7 +30,21 @@ Backgrounds<br>
 <input type="button" class="background" id="brute" name="brute" value="brute"><br>
 <input type="button" class="background" id="mage" name="mage" value="mage">
 <input type="button" class="background" id="peasant" name="peasant" value="peasant">
-</div><script src="magibo.js"></script>
-<div id="footer"><a href="https://github.com/ehwuts/megido-scripts">Github Repo</a></div>
+</div>
+<div>
+<br>
+<input type="number" id="upgrade" name="upgrade" min="0" max="10" value="0"><label for="upgrade"> weapon rank</label><br>
+<select name="blessing" id="blessing">
+<option value="">No</option>
+<option value="wind">Wind</option>
+<option value="fire">Fire</option>
+<option value="water">Water</option>
+<option value="earth">Earth</option>
+</select> <label for="blessing">Blessing</label>
+</div>
+<br>
+<div>Meeting requirements for <span id="weapons_usable">0</span> / <span id="weapons_total">0</span> weapons</div>
+<div id="weapons">magibo</div>
+<div id="footer"><a href="https://github.com/ehwuts/megido-scripts">Github Repo</a></div><script src="items.js"></script><script src="magibo.js"></script>
 </body>
 </html>

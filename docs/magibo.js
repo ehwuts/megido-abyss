@@ -1,6 +1,6 @@
 (() => {
 var id = {};
-var level_float = 0;
+var level_float = -8;
 	
 var backgrounds = {
 	"warrior": [7,4,6,5,3,2,"Crest Shield","Flax Helm","Flax Tunic","Flax Leggings","Flax Shoes","Shortsword","Falchion"],
@@ -23,6 +23,7 @@ function getIntelligence() {
 
 function update(e) {
 	id.level.innerText = "" + (level_float + getStrength() + getDexterity() + getIntelligence());
+	weapons();
 }
 
 function loadBackground(e) {
@@ -36,16 +37,30 @@ function loadBackground(e) {
 	update();
 }
 
+function weapons() {
+	let weapons = items.filter((x) => {
+		return x.attributes && 
+		(!x.attributes.strength || x.attributes.strength.required <= getStrength()) &&
+		(!x.attributes.dexterity || x.attributes.dexterity.required <= getDexterity()) &&
+		(!x.attributes.intelligence || x.attributes.intelligence.required <= getIntelligence());
+	});
+	id.weapons_usable.innerText = weapons.length;
+}
+
 function init() {
 	(id.strength = document.getElementById("strength")).addEventListener("change", update);
 	(id.dexterity = document.getElementById("dexterity")).addEventListener("change", update);
 	(id.intelligence = document.getElementById("intelligence")).addEventListener("change", update);
+	(id.weapons_total = document.getElementById("weapons_total")).innerText = items.length;
+	id.weapons_usable = document.getElementById("weapons_usable");
 	id.level = document.getElementById("level");
+	id.blessing = document.getElementById("blessing");
 	for (let e of document.getElementsByClassName("background")) {
 		if (e.tagName === "INPUT" && e.type === "button") {
 			e.addEventListener("click", loadBackground);
 		}
 	}
+	weapons();
 }
 
 window.addEventListener("load", init);	
