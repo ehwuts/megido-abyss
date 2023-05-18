@@ -17,3 +17,4 @@ body {
 
 h1, h2, h3 { line-height:1.2 }
 div.inb { display: inline-block; }
+#footer { position: absolute; bottom: 0px; right: 5px; }
