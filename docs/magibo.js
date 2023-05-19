@@ -37,6 +37,10 @@ function loadBackground(e) {
 	update();
 }
 
+function list_weapon(weapon) {
+	return weapon.name + " " + truncatedstringFromFloat((weapon.damage.physical || 0) + (weapon.damage.wind || 0) + (weapon.damage.earth || 0) + (weapon.damage.water || 0) + (weapon.damage.fire || 0), 0) + " " + weapon.swing.range + "/" + weapon.swing.class + "/" + weapon.swing.weight + (weapon.attributes.strength ? " STR:" + weapon.attributes.strength.required + (weapon.attributes.strength.scaling ? "/" + weapon.attributes.strength.scaling:""):"") + (weapon.attributes.dexterity ? " DEX:" + weapon.attributes.dexterity.required + (weapon.attributes.dexterity.scaling ? "/" + weapon.attributes.dexterity.scaling:""):"") + (weapon.attributes.intelligence ? " INT:" + weapon.attributes.intelligence.required + (weapon.attributes.intelligence.scaling? "/" + weapon.attributes.intelligence.scaling:""):"") + (weapon.special?(weapon.special.effect ? " " + weapon.special.effect : "") + (weapon.special.ability ? " " + weapon.special.ability : ""):"");
+}
+
 function weapons() {
 	let weapons = items.filter((x) => {
 		return x.attributes && 
@@ -45,6 +49,20 @@ function weapons() {
 		(!x.attributes.intelligence || x.attributes.intelligence.required <= getIntelligence());
 	});
 	id.weapons_usable.innerText = weapons.length;
+	id.weapons_list.innerHTML = "";
+	for (let x of weapons) {
+		id.weapons_list.innerHTML += list_weapon(x) + "<br>";
+	}
+}
+
+function truncatedstringFromFloat(f, p = 2) {
+	//return (f + ' ').substring(0, 4);
+	if (f > 0) {
+		f += 0.00001;
+	} else {
+		f -= 0.00001;
+	}
+	return f.toFixed(p);
 }
 
 function init() {
@@ -53,6 +71,7 @@ function init() {
 	(id.intelligence = document.getElementById("intelligence")).addEventListener("change", update);
 	(id.weapons_total = document.getElementById("weapons_total")).innerText = items.length;
 	id.weapons_usable = document.getElementById("weapons_usable");
+	id.weapons_list = document.getElementById("weapons");
 	id.level = document.getElementById("level");
 	id.blessing = document.getElementById("blessing");
 	for (let e of document.getElementsByClassName("background")) {
