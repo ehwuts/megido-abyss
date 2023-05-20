@@ -5,16 +5,27 @@ body {
   color: #444;
   font: 18px/1.5 sans-serif;
 }
+.phys { color: #222; }
+.fire { color: #700; }
+.water { color: #007; }
+.earth { color: #070; }
+.wind { color: #666; }
 
 @media (prefers-color-scheme: dark) {
 	body {
 	  background: #112;
 	  color: #cdd;
 	}
-	a:link { color: #5af }
+	a:link { color: #5af; }
 	a:visited { color: #89f; }
+	.phys { color: #777; }
+	.fire { color: #d22; }
+	.water { color: #22d; }
+	.earth { color: #2d2; }
+	.wind { color: #fff; }
 }
 
-h1, h2, h3 { line-height:1.2 }
+h1, h2, h3 { line-height:1.2; }
 div.inb { display: inline-block; }
 #footer { position: absolute; bottom: 0px; right: 5px; }
+input[type="number"] { width: 2.5em; }

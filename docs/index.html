@@ -14,33 +14,40 @@
 <meta name="msapplication-TileColor" content="#2b5797">
 </head>
 <body>
-<h1 id="magibo">Magibo</h1>
-<p>Magibo</p>
-<div class="inb">
-Level <span id="level">1</span><br>
-<input type="number" id="strength" name="strength" min="2" max="99" value="3"><label for="strength">Strength</label><br>
-<input type="number" id="dexterity" name="dexterity" min="2" max="99" value="3"><label for="dexterity">Dexterity</label><br>
-<input type="number" id="intelligence" name="intelligence" min="2" max="99" value="3"><label for="intelligence">Intelligence</label>
-</div>
-<div class="inb">
-Backgrounds<br>
+<div class="backgrounds">
 <input type="button" class="background" id="warrior" name="warrior" value="warrior">
-<input type="button" class="background" id="paladin" name="paladin" value="paladin"><br>
+<input type="button" class="background" id="paladin" name="paladin" value="paladin">
 <input type="button" class="background" id="thief" name="thief" value="thief">
-<input type="button" class="background" id="brute" name="brute" value="brute"><br>
+<input type="button" class="background" id="brute" name="brute" value="brute">
 <input type="button" class="background" id="mage" name="mage" value="mage">
 <input type="button" class="background" id="peasant" name="peasant" value="peasant">
+</div>
+<div id="attributes">
+<div class="inb">
+Level <span id="level">1</span><br>
+<input type="number" id="strength" name="strength" min="2" max="99" value="3" size="1"><label for="strength">STR</label><br>
+<input type="number" id="endurance" name="endurance" min="2" max="99" value="3"><label for="encurance">END</label>
+</div>
+<div class="inb">
+<input type="number" id="dexterity" name="dexterity" min="2" max="99" value="3"><label for="dexterity">DEX</label><br>
+<input type="number" id="intelligence" name="intelligence" min="2" max="99" value="3"><label for="intelligence">INT</label>
+</div> 
+<div class="inb">
+<input type="number" id="vitality" name="vitality" min="2" max="99" value="3"><label for="vitality">VIT</label><br>
+<input type="number" id="focus" name="focus" min="2" max="99" value="3"><label for="focus">FOC</label>
+</div>
 </div>
 <div>
 <br>
 <input type="number" id="upgrade" name="upgrade" min="0" max="10" value="0"><label for="upgrade"> weapon rank</label><br>
 <select name="blessing" id="blessing">
 <option value="">No</option>
-<option value="wind">Wind</option>
-<option value="fire">Fire</option>
+<!--<option value="fire">Fire</option>
 <option value="water">Water</option>
 <option value="earth">Earth</option>
-</select> <label for="blessing">Blessing</label>
+<option value="wind">Wind</option>-->
+</select> <label for="blessing">Blessing</label><br>
+<select name="target" id="target"><option value="Training Dummy">Training Dummy</option></select>
 </div>
 <br>
 <div>Meeting requirements for <span id="weapons_usable">0</span>/<span id="weapons_total">0</span> weapons.</div>
