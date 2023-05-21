@@ -21,24 +21,12 @@
 <input type="button" class="background" id="brute" name="brute" value="brute">
 <input type="button" class="background" id="mage" name="mage" value="mage">
 <input type="button" class="background" id="peasant" name="peasant" value="peasant">
-</div>
+</div><br>
 <div id="attributes">
 <div class="inb">
-Level <span id="level">1</span><br>
-<input type="number" id="strength" name="strength" min="2" max="99" value="3" size="1"><label for="strength">STR</label><br>
-<input type="number" id="endurance" name="endurance" min="2" max="99" value="3"><label for="encurance">END</label>
-</div>
-<div class="inb">
-<input type="number" id="dexterity" name="dexterity" min="2" max="99" value="3"><label for="dexterity">DEX</label><br>
-<input type="number" id="intelligence" name="intelligence" min="2" max="99" value="3"><label for="intelligence">INT</label>
-</div> 
-<div class="inb">
-<input type="number" id="vitality" name="vitality" min="2" max="99" value="3"><label for="vitality">VIT</label><br>
-<input type="number" id="focus" name="focus" min="2" max="99" value="3"><label for="focus">FOC</label>
-</div>
-</div>
-<div>
-<br>
+<input type="number" id="strength" name="strength" min="2" max="99" value="3" size="1"><label for="strength">STR</label><input type="number" id="dexterity" name="dexterity" min="2" max="99" value="3"><label for="dexterity">DEX</label><input type="number" id="vitality" name="vitality" min="2" max="99" value="3"><label for="vitality">VIT</label><br>
+<input type="number" id="endurance" name="endurance" min="2" max="99" value="3"><label for="encurance">END</label><input type="number" id="intelligence" name="intelligence" min="2" max="99" value="3"><label for="intelligence">INT</label><input type="number" id="focus" name="focus" min="2" max="99" value="3"><label for="focus">FOC</label><br><br>
+
 <input type="number" id="upgrade" name="upgrade" min="0" max="10" value="0"><label for="upgrade"> weapon rank</label><br>
 <select name="blessing" id="blessing">
 <option value="">No</option>
@@ -48,6 +36,13 @@ Level <span id="level">1</span><br>
 <option value="wind">Wind</option>-->
 </select> <label for="blessing">Blessing</label><br>
 <select name="target" id="target"><option value="Training Dummy">Training Dummy</option></select>
+</div>
+<div class="inb">
+Level <span id="level">1</span><br>
+HP: <span id="health">448</span><br>
+MP: <span id="mana">30</span><br>
+Stamina: <span id="stamina">80</span>
+</div>
 </div>
 <br>
 <div>Meeting requirements for <span id="weapons_usable">0</span>/<span id="weapons_total">0</span> weapons.</div>
