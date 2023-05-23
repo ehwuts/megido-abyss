@@ -5,11 +5,17 @@ body {
   color: #444;
   font: 18px/1.5 sans-serif;
 }
-.phys { color: #222; }
+.physical { color: #222; }
 .fire { color: #700; }
 .water { color: #007; }
 .earth { color: #070; }
 .wind { color: #666; }
+.poison { color: #250; }
+.bleed { color: #511; }
+.slow { color: #447; }
+.petrify { color: #434; }
+.confusion { color: #fd0; }
+
 
 @media (prefers-color-scheme: dark) {
 	body {
@@ -18,11 +24,14 @@ body {
 	}
 	a:link { color: #5af; }
 	a:visited { color: #89f; }
-	.phys { color: #777; }
+	.physical { color: #777; }
 	.fire { color: #d22; }
 	.water { color: #22d; }
 	.earth { color: #2d2; }
 	.wind { color: #fff; }
+	.bleed { color: #d33; }
+	.poison { color: #4b4; }
+	.slow { color: #77b; }
 }
 
 h1, h2, h3 { line-height:1.2; }

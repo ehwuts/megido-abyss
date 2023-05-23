@@ -244,24 +244,17 @@ function list_weapon(weapon) {
 	stat_scale += 1;
 	let total_scale = upgrade_scale * stat_scale;
 	//<tr><th>Weapon</th><th>Damage</th><th>Weight</th><th>Range</th><th>Class</th><th>STR</th><th>DEX</th><th>INT</th><th>Special</th></tr>
-	let result =  "<tr><td>" + weapon.name + "</td><td>";
+	let result =  "<tr><td>" + weapon.name + "</td>";
 	let damages = [];
-	if (weapon.damage.physical) {
-		damages.push("<span class=\"phys\">" + truncatedstringFromFloat(weapon.damage.physical * total_scale, 0) + "</span>");
+	for (let x in weapon.damage) {
+		damages.push("<span class=\"" + x + "\">" + truncatedstringFromFloat(weapon.damage[x] * total_scale, 0) + "</span>");
 	}
-	if (weapon.damage.fire) {
-		damages.push("<span class=\"fire\">" + truncatedstringFromFloat(weapon.damage.fire * total_scale, 0) + "</span>");
+	result += "<td>" + damages.join("+​") + "</td>";
+	let statuses = [];
+	for (let x in weapon.status) {
+		statuses.push("<span class=\"" + x + "\">" + weapon.status[x] + "</span>");
 	}
-	if (weapon.damage.water) {
-		damages.push("<span class=\"water\">" + truncatedstringFromFloat(weapon.damage.water * total_scale, 0) + "</span>");
-	}
-	if (weapon.damage.earth) {
-		damages.push("<span class=\"earth\">" + truncatedstringFromFloat(weapon.damage.earth * total_scale, 0) + "</span>");
-	}
-	if (weapon.damage.wind) {
-		damages.push("<span class=\"wind\">" + truncatedstringFromFloat(weapon.damage.wind * total_scale, 0) + "</span>");
-	}
-	result += damages.join("+") + "</td>";
+	result += "<td>" + statuses.join("+​") + "</td>";
 	result += "<td>" + weapon.swing.weight + "</td><td>" + weapon.swing.range + "</td><td>" + weapon.swing.class + "</td>";
 	
 	let attr = "";
@@ -288,8 +281,8 @@ function list_weapon(weapon) {
 		if (weapon.special.skill) attr += " " + weapon.special.skill;
 	}
 	result += "<td>" + attr + "</td>";
-	 result += "</tr>";
-	 return result;
+	result += "</tr>";
+	return result;
 }
 
 function weapons() {
@@ -301,7 +294,7 @@ function weapons() {
 	});
 	id.weapons_usable.innerText = weapons.length;
 	let content = "<table>";
-	content += "<tr><th>Weapon</th><th>Damage</th><th>Weight</th><th>Range</th><th>Class</th><th>STR</th><th>DEX</th><th>INT</th><th>Special</th></tr>";
+	content += "<tr><th>Weapon</th><th>Damage</th><th>Status</th><th>Weight</th><th>Range</th><th>Class</th><th>STR</th><th>DEX</th><th>INT</th><th>Special</th></tr>";
 	for (let x of weapons) {
 		content += list_weapon(x);
 	}
