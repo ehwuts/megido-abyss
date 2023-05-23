@@ -1,10 +1,7 @@
 (() => {
 var id = {};
 var scaled_strength = 3, scaled_dexterity = 3, scaled_intelligence = 3;
-// hp phys fire water earth wind poison bleed slow petrify confusion
-var enemies = {
-	"Training Dummy": [100000,0,0,0,0,0,0,0,0,0,0]
-}
+var blessing = 0;
 
 // str dex vit end int foc
 var backgrounds = {
@@ -58,6 +55,9 @@ function downscale(v) {
 		}
 	}
 	return r;
+}
+function getTarget() {
+	return enemies[id.target.value];
 }
 function getStrength() {
 	return Math.min(99, Math.max(1, id.strength.value | 0));
@@ -206,6 +206,17 @@ else if focus <= 99:
     set reduction to (1 - 0.74) - ((focus - 70)*0.002)
 */
 }
+function updateBlessing() {
+	let smarts = getIntelligence();
+	let bless = id.blessing.value;
+	let result = 0;
+	if ((!["fire", "water", "earth", "wind"].includes(bless)) || smarts < 10) result = 0;
+	else {
+		result = { "damage": {} };
+		result.damage[bless] = 25 + 1.5 * smarts;
+	}
+	blessing = result;
+}
 
 
 function update(e) {
@@ -216,6 +227,7 @@ function update(e) {
 	id.health.innerText = getHealth();
 	id.mana.innerText = getMana();
 	id.stamina.innerText = getStamina();
+	updateBlessing();
 	weapons();
 }
 
@@ -232,6 +244,118 @@ function loadBackground(e) {
 	update();
 }
 
+function killcount(weapon, total_scale, target) {
+	//phys fire water earth wind poison bleed slow petrify confusion
+	let defenses = {
+		"health": target[0],
+		"physical": target[1]/100,
+		"fire": target[2]/100,
+		"water": target[3]/100,
+		"earth": target[4]/100,
+		"wind": target[5]/100,
+		"poison": target[6],
+		"bleed": target[7],
+		"slow": target[8],
+		"petrify": target[9],
+		"confusion": target[10]
+	}
+	let health = defenses.health;
+	let speed = speeds[weapon.swing.class];
+	let damage = 0;
+	for (let x in weapon.damage) {
+		damage += weapon.damage[x] * total_scale * (1 - defenses[x]);
+	}
+	if (blessing !== 0) {
+		for (x in blessing.damage) {
+			damage += blessing.damage[x] * (1 - defenses[x]);
+		}
+	}
+	let attacks = Math.ceil(health / damage);
+	let time = attacks * speed;
+	let procs_poison = 0, procs_bleed = 0;
+	//iterative simulation of bleed and poison damage
+	if (weapon.status && (weapon.status.bleed || weapon.status.poison)) {
+		//console.log("attempting simulation of", weapon.name);
+		let rate_bleed = weapon.status.bleed || 0;
+		let rate_poison = weapon.status.poison || 0;
+		let count_health = health;
+		//console.log(count_health);
+		let count_bleed = 0;
+		let count_poison = 0;
+		let count_poison_damage = 0;
+		let count_time = 0;
+		let count_attacks = 0;
+		let cooldown_bleed = 60;
+		let cooldown_poison = 1200;
+		let abort = 1000;
+		while (count_health > 0 && abort > 0) {
+			abort--;
+			count_attacks++;
+			count_time += speed;
+			count_health -= damage;
+			//console.log(count_health);
+			if (cooldown_bleed >= 60) count_bleed += rate_bleed;
+			else cooldown_bleed += speed;
+			if (count_bleed >= defenses.bleed) {
+				count_bleed = 0;
+				count_health -= health * 0.15;
+				cooldown_bleed = 0;
+				procs_bleed++;
+				//console.log("bleed proc", count_attacks);
+			}
+			if (cooldown_poison >= 1200) count_poison += rate_poison;
+			else {
+				let dmg = Math.min(720 + 0.06 * health - count_poison_damage, (12 + 0.001 * health) * speed / 20);
+				count_poison_damage += dmg;
+				count_health -= dmg;
+				cooldown_poison += speed;
+			}
+			if (count_poison >= defenses.poison) {
+				count_poison = 0;
+				count_poison_damage = 0;
+				cooldown_poison = 0;
+				procs_poison++;
+				//console.log("poison proc", count_attacks);
+			}
+		}
+		if (abort > 0) {
+			attacks = count_attacks;
+			time = count_time;
+		}
+	}
+	/*
+	//this mess is probably slower than just iteratively calculating it anyway
+	// bled bosses take 15%, 3s post-proc delay
+	let attacks_bleed_proc, attacks_bleed_interval, attacks_bleed_interval_time, attacks_bleed_dps;
+	if (weapon.status.bleed) {
+		attacks_bleed_proc = Math.ceil(defenses.bleed / weapon.status.bleed);
+		attacks_bleed_interval = attacks_bleed_proc + Math.floor(3 * 20 / speed);
+		attacks_bleed_interval_time = attacks_bleed_interval * speed;
+		attacks_bleed_dps = health * .15 / attacks_bleed_interval_time;
+	}
+	// player dealt poison = 12 + 0.1% /s for 60s = 720 + 6%
+	let attacks_poison_proc, attacks_poison_interval, attacks_poison_interval_time, attacks_poison_dps;
+	if (weapon.status.poison) {
+		attacks_poison_proc = Math.ceil(defenses.poison / weapon.status.poison);
+		attacks_poison_interval = attacks_poison_proc + Math.floor(60 * 20 / speed);
+		attacks_poison_interval_time = attacks_poison_interval * speed;
+		attacks_poison_dps = (720 + 0.06 * health) / attacks_poison_interval_time;
+	}
+	if (attacks_bleed_dps || attacks_poison_dps) {
+		
+	}
+	*/
+	
+	let stamina = attacks * weapon.swing.weight;
+	let bars1 = truncatedstringFromFloat(attacks / Math.floor((getStamina() - 1) / weapon.swing.weight));
+	let bars2 = truncatedstringFromFloat(attacks / Math.ceil(getStamina() / weapon.swing.weight));
+	let proc_rates = [];
+	for (let x in weapon.status) {
+		proc_rates.push(Math.ceil(defenses[x] / weapon.status[x]) + "/" + x);
+	}
+	return "<td>" + attacks + "</td><td>" + stamina + "</td><td>" + truncatedstringFromFloat(time / 20) + "</td><td>" + bars1 + "</td><td>" + bars2 + "</td><td>" + proc_rates.join("<br>") + "</td><td>" + (procs_poison?procs_poison + "x poison":"") + (procs_poison && procs_bleed?", ":"") + (procs_bleed?procs_bleed + "x bleed":"") + "</td>";
+}
+
 function list_weapon(weapon) {
 	let stat_scale = getUpgrade();
 	let upgrade_scale = 1 + getUpgrade() * ((weapon.upgrading && weapon.upgrading.base_scaling) || 0.2);
@@ -243,11 +367,20 @@ function list_weapon(weapon) {
 	}
 	stat_scale += 1;
 	let total_scale = upgrade_scale * stat_scale;
-	//<tr><th>Weapon</th><th>Damage</th><th>Weight</th><th>Range</th><th>Class</th><th>STR</th><th>DEX</th><th>INT</th><th>Special</th></tr>
+	//<tr><th>Weapon</th><th>Damage</th><th>Status</th><th>Weight</th><th>Range</th><th>Class</th><th>STR</th><th>DEX</th><th>INT</th><th>Attacks</th><th>Stamina</th><th>Seconds</th><th>Bars</th><th>Bars2</th><th>Proc Rate</th><th>Procs</th></tr>
 	let result =  "<tr><td>" + weapon.name + "</td>";
 	let damages = [];
 	for (let x in weapon.damage) {
-		damages.push("<span class=\"" + x + "\">" + truncatedstringFromFloat(weapon.damage[x] * total_scale, 0) + "</span>");
+		let dmg = weapon.damage[x] * total_scale;
+		if (blessing !== 0 && blessing.damage[x]) dmg += blessing.damage[x];
+		damages.push("<span class=\"" + x + "\">" + truncatedstringFromFloat(dmg, 0) + "</span>");
+	}
+	if (blessing!==0) {
+		for (let x in blessing.damage) {
+			if (!weapon.damage[x]) {
+				damages.push("<span class=\"" + x + "\">" + truncatedstringFromFloat(blessing.damage[x], 0) + "</span>");				
+			}
+		}
 	}
 	result += "<td>" + damages.join("+​") + "</td>";
 	let statuses = [];
@@ -259,28 +392,31 @@ function list_weapon(weapon) {
 	
 	let attr = "";
 	if (weapon.attributes.strength) {
-		attr += weapon.attributes.strength.required;
-		attr += "<br>" + (weapon.attributes.strength.scaling ? weapon.attributes.strength.scaling : "None");
+		//attr += weapon.attributes.strength.required;
+		attr += /*"<br>" +*/ (weapon.attributes.strength.scaling ? weapon.attributes.strength.scaling : "-");
 	}
 	result += "<td>" + attr + "</td>";
 	attr = "";
 	if (weapon.attributes.dexterity) {
-		attr += weapon.attributes.dexterity.required;
-		attr += "<br>" + (weapon.attributes.dexterity.scaling ? weapon.attributes.dexterity.scaling : "None");
+		//attr += weapon.attributes.dexterity.required;
+		attr += /*"<br>" +*/ (weapon.attributes.dexterity.scaling ? weapon.attributes.dexterity.scaling : "-");
 	}
 	result += "<td>" + attr + "</td>";
 	attr = "";
 	if (weapon.attributes.intelligence) {
-		attr += weapon.attributes.intelligence.required;
-		attr += "<br>" + (weapon.attributes.intelligence.scaling ? weapon.attributes.intelligence.scaling : "None");
+		//attr += weapon.attributes.intelligence.required;
+		attr += /*"<br>" +*/ (weapon.attributes.intelligence.scaling ? weapon.attributes.intelligence.scaling : "-");
 	}
 	result += "<td>" + attr + "</td>";
 	attr = "";
+	/*
 	if (weapon.special) {
 		if (weapon.special.effect) attr += weapon.special.effect;
 		if (weapon.special.skill) attr += " " + weapon.special.skill;
 	}
 	result += "<td>" + attr + "</td>";
+	*/
+	result += killcount(weapon, total_scale, getTarget());
 	result += "</tr>";
 	return result;
 }
@@ -294,7 +430,7 @@ function weapons() {
 	});
 	id.weapons_usable.innerText = weapons.length;
 	let content = "<table>";
-	content += "<tr><th>Weapon</th><th>Damage</th><th>Status</th><th>Weight</th><th>Range</th><th>Class</th><th>STR</th><th>DEX</th><th>INT</th><th>Special</th></tr>";
+	content += "<tr><th>Weapon</th><th>Damage</th><th>Status</th><th>Weight</th><th>Range</th><th>Class</th><th>STR</th><th>DEX</th><th>INT</th><th>Attacks</th><th>Stamina</th><th>Seconds</th><th>Bars</th><th>Bars2</th><th>Rate</th><th>Procs</th></tr>";
 	for (let x of weapons) {
 		content += list_weapon(x);
 	}
@@ -316,6 +452,7 @@ function init() {
 	id.mana = document.getElementById("mana");
 	id.stamina = document.getElementById("stamina");
 	id.level = document.getElementById("level");
+	(id.target = document.getElementById("target")).addEventListener("change", update);
 	(id.upgrade = document.getElementById("upgrade")).addEventListener("change", update);
 	(id.blessing = document.getElementById("blessing")).addEventListener("change", update);
 	for (let e of document.getElementsByClassName("background")) {
@@ -323,6 +460,14 @@ function init() {
 			e.addEventListener("click", loadBackground);
 		}
 	}
+	
+	let content = "";
+	for (let x in enemies) {
+		//if (x === "Training Dummy") continue;
+		content += "<option value=\"" + x + "\">" + x + "</option>";
+	}
+	id.target.innerHTML = content;
+	
 	weapons();
 }
 
