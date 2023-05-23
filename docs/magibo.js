@@ -429,13 +429,14 @@ function weapons() {
 		(!x.attributes.intelligence || x.attributes.intelligence.required <= getIntelligence());
 	});
 	id.weapons_usable.innerText = weapons.length;
-	let content = "<table>";
-	content += "<tr><th>Weapon</th><th>Damage</th><th>Status</th><th>Weight</th><th>Range</th><th>Class</th><th>STR</th><th>DEX</th><th>INT</th><th>Attacks</th><th>Stamina</th><th>Seconds</th><th>Bars</th><th>Bars2</th><th>Rate</th><th>Procs</th></tr>";
+	let content = "<table class=\"sortable\" id=\"weapons_table\">";
+	content += "<thead><tr><th>Weapon</th><th>Damage</th><th>Status</th><th>Weight</th><th>Range</th><th>Class</th><th>STR</th><th>DEX</th><th>INT</th><th>Attacks</th><th>Stamina</th><th>Seconds</th><th>Bars</th><th>Bars2</th><th>Rate</th><th>Procs</th></tr></thead><tbody>";
 	for (let x of weapons) {
 		content += list_weapon(x);
 	}
-	content += "</table>";
+	content += "</tbody></table>";
 	id.weapons_list.innerHTML = content;
+	sorttable.makeSortable(document.getElementById("weapons_table"))
 }
 
 function init() {

@@ -6,18 +6,31 @@ Megido Abyss is playable at play.megido.xyz, and accepts clients versions 1.12.2
 
 ## License
 
-My stuff defaults MIT. Source data scripts were pilfered from the unlicensed default-ARR official optimizer.
+My stuff defaults MIT, a copy of which can be found in this repository.
 
-## Weapon Optimizer
+Source data scripts were pilfered from the unlicensed official optimizer.
 
-Same aims as the official one just different. Feed it stats and upgrade levels and pick a sorting option.
+sorttable.js is (c) Stuart Langridge and provided under the X11 license.
+
+## Magibo
+
+Current take on a weapon optimizer. can be accessed at [https://ehwuts.github.io/megido-scripts/].
+
+Requires:
+
+* [sorttable.js](https://www.kryogenix.org/code/browser/sorttable/) - 
+
+
+## weapon-optimizer.js
+
+Initial take on making an equivalent to the official weapon optimizer. Feed it stats and upgrade levels and pick a sorting option.
 
 Requires:
 
 * [NodeJS](https://nodejs.org/)
 * [prompt-sync](https://www.npmjs.com/package/prompt-sync)
 
-## optimizertojson
+## optimizertojson.js
 
 converts from the official optimizer's data file script format to more readily accessible json
 
