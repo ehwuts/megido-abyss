@@ -1759,7 +1759,7 @@
 	},
 	{
 		"id": "1137",
-		"name": "Conductor's Wand",
+		"name": "Conductor's Wand*",
 		"displayname": "&6Conductor's Wand",
 		"swing": {
 			"class": "Very Light",
@@ -2262,7 +2262,7 @@
 	},
 	{
 		"id": "1119",
-		"name": "Chronos Axe",
+		"name": "Chronos Axe*",
 		"displayname": "&6Chronos Axe",
 		"swing": {
 			"class": "Very Heavy+",
@@ -2287,7 +2287,7 @@
 	},
 	{
 		"id": "1118",
-		"name": "Flaming Brand",
+		"name": "Flaming Brand*",
 		"displayname": "&6Flaming Brand",
 		"swing": {
 			"class": "Medium",
@@ -2369,7 +2369,7 @@
 	},
 	{
 		"id": "1115",
-		"name": "Flower Blade",
+		"name": "Flower Blade*",
 		"displayname": "&6Flower Blade",
 		"swing": {
 			"class": "Medium",

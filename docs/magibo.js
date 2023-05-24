@@ -358,7 +358,9 @@ function killcount(weapon, total_scale, target) {
 
 function list_weapon(weapon) {
 	let stat_scale = getUpgrade();
+	if (weapon.upgrading && weapon.upgrading.base_scaling === 0) stat_scale = 10;
 	let upgrade_scale = 1 + getUpgrade() * ((weapon.upgrading && weapon.upgrading.base_scaling) || 0.2);
+	if (weapon.upgrading && weapon.upgrading.base_scaling === 0) upgrade_scale = 1;
 	if (stat_scale) {
 		stat_scale *= (((weapon.attributes.strength && weapon.attributes.strength.scaling && scales[weapon.attributes.strength.scaling]) || 0) * scaled_strength
 		+ ((weapon.attributes.dexterity && weapon.attributes.dexterity.scaling && scales[weapon.attributes.dexterity.scaling]) || 0) * scaled_dexterity
