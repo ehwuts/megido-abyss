@@ -210,10 +210,10 @@ function updateBlessing() {
 	let smarts = getIntelligence();
 	let bless = id.blessing.value;
 	let result = 0;
-	if ((!["fire", "water", "earth", "wind"].includes(bless)) || smarts < 10) result = 0;
+	if ((!["fire", "water", "earth", "wind"].includes(bless))) result = 0;
 	else {
 		result = { "damage": {} };
-		result.damage[bless] = 25 + 1.5 * smarts;
+		result.damage[bless] = smarts < 10 ? 2.2 : 22 + 1.32 * smarts;
 	}
 	blessing = result;
 }
