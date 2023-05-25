@@ -220,6 +220,10 @@ function updateBlessing() {
 	}
 	blessing = result;
 }
+function getStaminaRegen() {
+	// 50/s | 40/s
+	return id.fleetfooted.checked ? 2.5 : 2;
+}
 
 
 function update(e) {
@@ -350,8 +354,10 @@ function killcount(weapon, total_scale, target) {
 	*/
 	
 	let stamina = attacks * weapon.swing.weight;
+	time = attacks * speed + stamina / getStaminaRegen();
 	let bars1 = truncatedstringFromFloat(attacks / Math.floor((getStamina() - 1) / weapon.swing.weight));
 	let bars2 = truncatedstringFromFloat(attacks / Math.ceil(getStamina() / weapon.swing.weight));
+	
 	let proc_rates = [];
 	for (let x in weapon.status) {
 		proc_rates.push(Math.ceil(defenses[x] / weapon.status[x]) + "/" + x);
@@ -437,7 +443,7 @@ function weapons() {
 	});
 	id.weapons_usable.innerText = weapons.length;
 	let content = "<table class=\"sortable\" id=\"weapons_table\">";
-	content += "<thead><tr><th>Weapon</th><th>DMG</th><th>Status</th><th>Weight</th><th>Range</th><th>Class</th><th>STR</th><th>DEX</th><th>INT</th><th>EDmg</th><th>Attacks</th><th>Stamina</th><th>Seconds</th><th>Bars</th><th>Bars2</th><th>Rate</th><th>Procs</th></tr></thead><tbody>";
+	content += "<thead><tr><th>Weapon</th><th>DMG</th><th>Status</th><th>Weight</th><th>Range</th><th>Class</th><th>STR</th><th>DEX</th><th>INT</th><th>EDmg</th><th>Attacks</th><th>Stamina</th><th>Time</th><th>Bars1</th><th>Bars2</th><th>Rate</th><th>Procs</th></tr></thead><tbody>";
 	for (let x of weapons) {
 		content += list_weapon(x);
 	}
@@ -464,6 +470,7 @@ function init() {
 	(id.upgrade = document.getElementById("upgrade")).addEventListener("change", update);
 	(id.blessing = document.getElementById("blessing")).addEventListener("change", update);
 	id.blessdmg = document.getElementById("blessdmg");
+	(id.fleetfooted = document.getElementById("fleetfooted")).addEventListener("change", update);
 	for (let e of document.getElementsByClassName("background")) {
 		if (e.tagName === "INPUT" && e.type === "button") {
 			e.addEventListener("click", loadBackground);
