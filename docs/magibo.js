@@ -210,10 +210,13 @@ function updateBlessing() {
 	let smarts = getIntelligence();
 	let bless = id.blessing.value;
 	let result = 0;
-	if ((!["fire", "water", "earth", "wind"].includes(bless))) result = 0;
-	else {
+	if ((!["fire", "water", "earth", "wind"].includes(bless))) {
+		result = 0;
+		id.blessdmg.innerText = "";
+	} else {
 		result = { "damage": {} };
-		result.damage[bless] = smarts < 10 ? 2.2 : 22 + 1.32 * smarts;
+		id.blessdmg.innerText = "+"+(result.damage[bless] = smarts < 10 ? 2.2 : 22 + 1.32 * smarts);
+		id.blessdmg.className = bless;
 	}
 	blessing = result;
 }
@@ -353,7 +356,7 @@ function killcount(weapon, total_scale, target) {
 	for (let x in weapon.status) {
 		proc_rates.push(Math.ceil(defenses[x] / weapon.status[x]) + "/" + x);
 	}
-	return "<td>" + attacks + "</td><td>" + stamina + "</td><td>" + truncatedstringFromFloat(time / 20) + "</td><td>" + bars1 + "</td><td>" + bars2 + "</td><td>" + proc_rates.join("<br>") + "</td><td>" + (procs_poison?procs_poison + "x poison":"") + (procs_poison && procs_bleed?", ":"") + (procs_bleed?procs_bleed + "x bleed":"") + "</td>";
+	return "<td>" + truncatedstringFromFloat(damage) + "</td><td>" + attacks + "</td><td>" + stamina + "</td><td>" + truncatedstringFromFloat(time / 20) + "</td><td>" + bars1 + "</td><td>" + bars2 + "</td><td>" + proc_rates.join("<br>") + "</td><td>" + (procs_poison?procs_poison + "x poison":"") + (procs_poison && procs_bleed?", ":"") + (procs_bleed?procs_bleed + "x bleed":"") + "</td>";
 }
 
 function list_weapon(weapon) {
@@ -374,9 +377,10 @@ function list_weapon(weapon) {
 	let damages = [];
 	for (let x in weapon.damage) {
 		let dmg = weapon.damage[x] * total_scale;
-		if (blessing !== 0 && blessing.damage[x]) dmg += blessing.damage[x];
+		//if (blessing !== 0 && blessing.damage[x]) dmg += blessing.damage[x];
 		damages.push("<span class=\"" + x + "\">" + truncatedstringFromFloat(dmg, 0) + "</span>");
 	}
+	/*
 	if (blessing!==0) {
 		for (let x in blessing.damage) {
 			if (!weapon.damage[x]) {
@@ -384,6 +388,7 @@ function list_weapon(weapon) {
 			}
 		}
 	}
+	*/
 	result += "<td>" + damages.join("+​") + "</td>";
 	let statuses = [];
 	for (let x in weapon.status) {
@@ -432,7 +437,7 @@ function weapons() {
 	});
 	id.weapons_usable.innerText = weapons.length;
 	let content = "<table class=\"sortable\" id=\"weapons_table\">";
-	content += "<thead><tr><th>Weapon</th><th>Damage</th><th>Status</th><th>Weight</th><th>Range</th><th>Class</th><th>STR</th><th>DEX</th><th>INT</th><th>Attacks</th><th>Stamina</th><th>Seconds</th><th>Bars</th><th>Bars2</th><th>Rate</th><th>Procs</th></tr></thead><tbody>";
+	content += "<thead><tr><th>Weapon</th><th>DMG</th><th>Status</th><th>Weight</th><th>Range</th><th>Class</th><th>STR</th><th>DEX</th><th>INT</th><th>EDmg</th><th>Attacks</th><th>Stamina</th><th>Seconds</th><th>Bars</th><th>Bars2</th><th>Rate</th><th>Procs</th></tr></thead><tbody>";
 	for (let x of weapons) {
 		content += list_weapon(x);
 	}
@@ -458,6 +463,7 @@ function init() {
 	(id.target = document.getElementById("target")).addEventListener("change", update);
 	(id.upgrade = document.getElementById("upgrade")).addEventListener("change", update);
 	(id.blessing = document.getElementById("blessing")).addEventListener("change", update);
+	id.blessdmg = document.getElementById("blessdmg");
 	for (let e of document.getElementsByClassName("background")) {
 		if (e.tagName === "INPUT" && e.type === "button") {
 			e.addEventListener("click", loadBackground);
