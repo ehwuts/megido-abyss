@@ -367,10 +367,17 @@ function killcount(weapon, total_scale, target) {
 
 function list_weapon(weapon) {
 	let stat_scale = getUpgrade();
-	if (weapon.upgrading && weapon.upgrading.base_scaling === 0) stat_scale = 10;
 	let upgrade_scale = 1 + getUpgrade() * ((weapon.upgrading && weapon.upgrading.base_scaling) || 0.2);
-	if (weapon.upgrading && weapon.upgrading.base_scaling === 0) upgrade_scale = 1;
-	if (stat_scale) {
+	if (weapon.upgrading && weapon.upgrading.base_scaling === 0) {
+		stat_scale = 10;
+		upgrade_scale = 1;
+		if (weapon.name.indexOf("Barehanded") !== -1) {
+			stat_scale *= (((weapon.attributes.strength && weapon.attributes.strength.scaling && scales[weapon.attributes.strength.scaling]) || 0) * getStrength()
+			+ ((weapon.attributes.dexterity && weapon.attributes.dexterity.scaling && scales[weapon.attributes.dexterity.scaling]) || 0) * getDexterity()
+			+ ((weapon.attributes.intelligence && weapon.attributes.intelligence.scaling && scales[weapon.attributes.intelligence.scaling]) || 0) * getIntelligence()
+			);
+		}
+	} else if (stat_scale) {
 		stat_scale *= (((weapon.attributes.strength && weapon.attributes.strength.scaling && scales[weapon.attributes.strength.scaling]) || 0) * scaled_strength
 		+ ((weapon.attributes.dexterity && weapon.attributes.dexterity.scaling && scales[weapon.attributes.dexterity.scaling]) || 0) * scaled_dexterity
 		+ ((weapon.attributes.intelligence && weapon.attributes.intelligence.scaling && scales[weapon.attributes.intelligence.scaling]) || 0) * scaled_intelligence
@@ -443,7 +450,7 @@ function weapons() {
 	});
 	id.weapons_usable.innerText = weapons.length;
 	let content = "<table class=\"sortable\" id=\"weapons_table\">";
-	content += "<thead><tr><th>Weapon</th><th>DMG</th><th>Status</th><th>Weight</th><th>Range</th><th>Class</th><th>STR</th><th>DEX</th><th>INT</th><th title=\"The effective damage per hit against the chosen enemy.\">EDmg</th><th>Attacks</th><th>Stamina</th><th title=\"The combined time taken to both make the attacks and regenerate their stamina cost.\">Time</th><th title=\"Stamina bars leaving at least 1 stamina each time.\">Bars1</th><th title=\"Stamina bars with full exhaustion.\">Bars2</th><th>Rate</th><th title=\"The expected number of damage status applications assuming no buildup decay.\">Procs</th></tr></thead><tbody>";
+	content += "<thead><tr><th>Weapon</th><th>DMG</th><th>Status</th><th>Weight</th><th>Range</th><th>Class</th><th>STR</th><th>DEX</th><th>INT</th><th title=\"The effective damage per hit against the chosen enemy.\">EDmg</th><th>Attacks</th><th>Stamina</th><th title=\"The combined time taken to both make the attacks and regenerate their stamina cost.\">Time</th><th title=\"Stamina bars leaving at least 1 stamina each time. Includes bleed procs with incorrect valuation.\">Bars1</th><th title=\"Stamina bars with full exhaustion.\">Bars2</th><th>Rate</th><th title=\"The expected number of damage status applications assuming no buildup decay.\">Procs</th></tr></thead><tbody>";
 	for (let x of weapons) {
 		content += list_weapon(x);
 	}

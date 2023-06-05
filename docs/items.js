@@ -5657,5 +5657,59 @@ var items = [
 		"upgrading": {
 			"type": 1
 		}
+	},
+	{
+		"id": "1000",
+		"name": "Barehanded*",
+		"displayname": "&6Barehanded",
+		"swing": {
+			"class": "Light",
+			"range": 1,
+			"weight": 20
+		},
+		"damage": {
+			"physical": 20
+		},
+		"attributes": {
+			"dexterity": {
+				"scaling": "D",
+				"required": 1
+			},
+			"strength": {
+				"scaling": "D",
+				"required": 1
+			}
+		},
+		"special": {},
+		"upgrading": {
+			"base_scaling": 0
+		}
+	},
+	{
+		"id": "999",
+		"name": "Barehanded (Orb)*",
+		"displayname": "&6Barehanded+",
+		"swing": {
+			"class": "Light",
+			"range": 1,
+			"weight": 20
+		},
+		"damage": {
+			"physical": 80
+		},
+		"attributes": {
+			"dexterity": {
+				"scaling": "B",
+				"required": 1
+			},
+			"strength": {
+				"scaling": "B",
+				"required": 1
+			}
+		},
+		"special": {},
+		"upgrading": {
+			"base_scaling": 0
+		}
 	}
 ]
