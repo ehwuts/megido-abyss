@@ -450,7 +450,7 @@ function weapons() {
 	});
 	id.weapons_usable.innerText = weapons.length;
 	let content = "<table class=\"sortable\" id=\"weapons_table\">";
-	content += "<thead><tr><th>Weapon</th><th>DMG</th><th>Status</th><th>Weight</th><th>Range</th><th>Class</th><th>STR</th><th>DEX</th><th>INT</th><th title=\"The effective damage per hit against the chosen enemy.\">EDmg</th><th>Attacks</th><th>Stamina</th><th title=\"The combined time taken to both make the attacks and regenerate their stamina cost.\">Time</th><th title=\"Stamina bars leaving at least 1 stamina each time. Includes bleed procs with incorrect valuation.\">Bars1</th><th title=\"Stamina bars with full exhaustion.\">Bars2</th><th>Rate</th><th title=\"The expected number of damage status applications assuming no buildup decay.\">Procs</th></tr></thead><tbody>";
+	content += "<thead><tr><th>Weapon</th><th>DMG</th><th>Status</th><th>Weight</th><th>Range</th><th>Class</th><th>STR</th><th>DEX</th><th>INT</th><th title=\"The effective damage per hit against the chosen enemy.\">EDmg</th><th>Attacks</th><th>Stamina</th><th title=\"The combined time taken to both make the attacks and regenerate their stamina cost. Includes bleed procs with incorrect valuation.\">Time</th><th title=\"Stamina bars leaving at least 1 stamina each time.\">Bars1</th><th title=\"Stamina bars with full exhaustion.\">Bars2</th><th>Rate</th><th title=\"The expected number of damage status applications assuming no buildup decay.\">Procs</th></tr></thead><tbody>";
 	for (let x of weapons) {
 		content += list_weapon(x);
 	}
