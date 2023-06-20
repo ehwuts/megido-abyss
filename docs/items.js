@@ -1,5 +1,58 @@
 var items = [
 	{
+		"id": "1200",
+		"name": "Spellblade",
+		"displayname": "&6Spellblade",
+		"swing": {
+			"class": "Medium",
+			"range": 3,
+			"weight": 28
+		},
+		"damage": {
+			"wind": 30,
+			"physical": 30
+		},
+		"attributes": {
+			"intelligence": {
+				"scaling": "C",
+				"required": 12
+			},
+			"dexterity": {
+				"scaling": "D",
+				"required": 8
+			}
+		},
+		"appearance": "glowing gold sword",
+		"lore": "A curved, bronze falchion  that pulsates with an illusory enchantment.",
+		"upgrading": {
+			"type": 1
+		}
+	},
+	{
+		"id": "1199",
+		"name": "Soldier Greatsword",
+		"displayname": "&6Soldier Greatsword",
+		"swing": {
+			"class": "Heavy",
+			"range": 3,
+			"weight": 42
+		},
+		"damage": {
+			"physical": 98
+		},
+		"attributes": {
+			"strength": {
+				"scaling": "E",
+				"required": 11
+			}
+		},
+		"appearance": "iron sword",
+		"lore": "A moderately heavy greatsword that is common issue for soldiers of Leere.",
+		"upgrading": {
+			"type": 1
+		}
+	},
+	{
 		"id": "1198",
 		"name": "Minos's Great Mace",
 		"displayname": "&6Minos's Great Mace",
@@ -21,6 +74,7 @@ var items = [
 				"required": 22
 			}
 		},
+		"price": 0,
 		"appearance": "iron shovel",
 		"special": {
 			"effect": "Attacks Spend MP to Create Holy Explosions"
@@ -160,6 +214,7 @@ var items = [
 				"required": 28
 			}
 		},
+		"price": 24000,
 		"appearance": "gold axe",
 		"special": {
 			"effect": "Bonus Damage VS Recently Bled Enemies"
@@ -188,6 +243,7 @@ var items = [
 				"required": 28
 			}
 		},
+		"price": 24000,
 		"appearance": "glowing stone hoe",
 		"special": {
 			"effect": "Converts All Status Buildup to Confusion"
@@ -217,6 +273,7 @@ var items = [
 				"required": 28
 			}
 		},
+		"price": 24000,
 		"appearance": "wooden sword",
 		"special": {
 			"effect": "Bonus Crit Damage VS Poisoned Enemies"
@@ -382,15 +439,15 @@ var items = [
 			"weight": 40
 		},
 		"damage": {
-			"water": 20,
-			"physical": 20
+			"water": 40
 		},
 		"attributes": {
 			"intelligence": {
 				"scaling": "S",
-				"required": 60
+				"required": 50
 			}
 		},
+		"price": 40000,
 		"appearance": "diamond sword",
 		"special": {
 			"effect": "Charged Attacks Spend MP to Unleash a Projectile"
@@ -537,6 +594,7 @@ var items = [
 				"required": 18
 			}
 		},
+		"price": 0,
 		"appearance": "glowing gold shovel",
 		"special": {
 			"skill": "viciousTrample",
@@ -571,6 +629,7 @@ var items = [
 				"required": 12
 			}
 		},
+		"price": 24000,
 		"appearance": "glowing stone shovel",
 		"lore": "One of a pair of adorned spears with a shockingly high quality of craftsmanship. Can perform a unique dual attack with its twin.",
 		"special": {
@@ -800,6 +859,7 @@ var items = [
 				"required": 19
 			}
 		},
+		"price": 0,
 		"appearance": "lead",
 		"special": {
 			"effect": "Bonus Damage VS Creatures of the Night",
@@ -948,6 +1008,7 @@ var items = [
 				"required": 12
 			}
 		},
+		"price": 0,
 		"appearance": "glowing iron shovel",
 		"special": {
 			"skill": "overheadSlam"
@@ -1118,6 +1179,7 @@ var items = [
 				"required": 16
 			}
 		},
+		"expansion": 1,
 		"appearance": "iron shovel",
 		"lore": "A long spiked tool used to impale fish.",
 		"special": {
@@ -1149,6 +1211,7 @@ var items = [
 				"required": 6
 			}
 		},
+		"expansion": 1,
 		"appearance": "glowing gold sword",
 		"special": {
 			"effect": "Attacks Reduce Enemy Buff Length"
@@ -1180,6 +1243,7 @@ var items = [
 				"required": 10
 			}
 		},
+		"expansion": 1,
 		"appearance": "glowing wooden shovel",
 		"lore": "A mace reinforced with cursed roots that cause internal bleeding in enemies.",
 		"status": {
@@ -1206,12 +1270,13 @@ var items = [
 				"required": 1
 			}
 		},
+		"price": 0,
 		"appearance": "glowing iron sword",
 		"special": {
 			"effect": "Attacks Ignore Shields",
 			"shield_piercing": 0
 		},
-		"lore": "A legendary blade used by the Darkwater civilization to dispel barriers.",
+		"lore": "A legendary blade used by the Darkwater civilization to dispel barrier crystals.",
 		"upgrading": {
 			"material": 2,
 			"base_scaling": 0.4,
@@ -1236,6 +1301,8 @@ var items = [
 				"required": 70
 			}
 		},
+		"expansion": 1,
+		"price": 0,
 		"appearance": "glowing diamond sword",
 		"special": {
 			"skill": "JudgmentBlade2"
@@ -1265,6 +1332,8 @@ var items = [
 				"required": 70
 			}
 		},
+		"expansion": 1,
+		"price": 0,
 		"appearance": "glowing diamond sword",
 		"special": {
 			"skill": "JudgmentBlade1"
@@ -1342,6 +1411,7 @@ var items = [
 				"required": 1
 			}
 		},
+		"expansion": 1,
 		"appearance": "bone",
 		"lore": "A shattered shard of a former inmate's skeleton.",
 		"special": {
@@ -1432,6 +1502,8 @@ var items = [
 				"required": 40
 			}
 		},
+		"expansion": 1,
+		"price": 0,
 		"appearance": "glowing gold sword",
 		"lore": "The blade wielded by two legendary heroes who prevented the Origin from wiping out humanity in an age past.",
 		"upgrading": {
@@ -1456,6 +1528,7 @@ var items = [
 				"required": 70
 			}
 		},
+		"expansion": 1,
 		"appearance": "iron hoe",
 		"lore": "A short scythe forged out of some sort of enchanted crystal.",
 		"special": {
@@ -1488,6 +1561,7 @@ var items = [
 				"required": 24
 			}
 		},
+		"expansion": 1,
 		"appearance": "glowing iron sword",
 		"lore": "A blade of crystal enchanted with abyssal powers of ice.",
 		"status": {
@@ -1516,9 +1590,10 @@ var items = [
 			},
 			"strength": {
 				"scaling": "B",
-				"required": 32
+				"required": 24
 			}
 		},
+		"price": 72000,
 		"appearance": "glowing stone sword",
 		"special": {
 			"effect": "Charged Attacks Spend HP to Unleash a Shockwave"
@@ -1548,10 +1623,11 @@ var items = [
 				"required": 24
 			}
 		},
+		"expansion": 1,
 		"appearance": "stick",
 		"lore": "A wand wielded by a servant of an ancient servant of an incarnation of the Origin.",
 		"status": {
-			"slow": 4
+			"slow": 5
 		},
 		"upgrading": {
 			"type": 1
@@ -1575,6 +1651,7 @@ var items = [
 				"required": 70
 			}
 		},
+		"expansion": 1,
 		"appearance": "stone axe",
 		"lore": "A monumental slab of stone that is said to have been wielded by an ancient relative of humans.",
 		"upgrading": {
@@ -1603,6 +1680,7 @@ var items = [
 				"required": 30
 			}
 		},
+		"expansion": 1,
 		"appearance": "diamond sword",
 		"lore": "A legendary blade said to have been used in the fight against an ancient warlock.",
 		"upgrading": {
@@ -1627,6 +1705,7 @@ var items = [
 				"required": 60
 			}
 		},
+		"expansion": 1,
 		"appearance": "diamond hoe",
 		"lore": "An expertly forged staff said to have been used in the fight against an ancient warlock.",
 		"upgrading": {
@@ -1656,6 +1735,7 @@ var items = [
 				"required": 36
 			}
 		},
+		"expansion": 1,
 		"appearance": "diamond shovel",
 		"lore": "A legendary spear said to have the power to split the sky itself.",
 		"special": {
@@ -1687,6 +1767,7 @@ var items = [
 				"required": 24
 			}
 		},
+		"expansion": 1,
 		"appearance": "wood hoe",
 		"lore": "A lacerating scythe wielded by the phantoms of those once massacred for their anima.",
 		"special": {
@@ -1717,6 +1798,7 @@ var items = [
 				"required": 22
 			}
 		},
+		"expansion": 1,
 		"appearance": "glowing iron shovel",
 		"special": {
 			"effect": "Reduces Victims' Stamina"
@@ -1751,6 +1833,7 @@ var items = [
 				"required": 16
 			}
 		},
+		"expansion": 1,
 		"appearance": "glowing iron sword",
 		"lore": "An enchanted blade that channels the wielder's intelligence. Wielded by those that fought against the dogmatic teachings of an ancient religion.",
 		"upgrading": {
@@ -1775,6 +1858,8 @@ var items = [
 				"required": 99
 			}
 		},
+		"expansion": 1,
+		"price": 0,
 		"appearance": "stick",
 		"lore": "A wand that can only be wielded by the most intelligent. Produces beautiful melodies when used by those with 200 IQ.",
 		"upgrading": {
@@ -1799,9 +1884,11 @@ var items = [
 				"required": 25
 			}
 		},
+		"expansion": 1,
+		"price": 0,
 		"appearance": "stick",
 		"special": {
-			"effect": "Inflicts Poison/Bleed on Slowed Targets"
+			"effect": "Inflicts Poison/Confusion on Slowed Targets"
 		},
 		"lore": "A cursed needle coated with a neurotoxin that neutralizes its target.",
 		"upgrading": {
@@ -1831,6 +1918,7 @@ var items = [
 				"required": 28
 			}
 		},
+		"expansion": 1,
 		"appearance": "iron shovel",
 		"lore": "An iron mace with impaling spikes on the end, allowing it to deal massive bleed damage.",
 		"status": {
@@ -1858,6 +1946,7 @@ var items = [
 				"required": 2
 			}
 		},
+		"expansion": 1,
 		"appearance": "wood shovel",
 		"lore": "A common rowboat paddle.",
 		"upgrading": {
@@ -1883,6 +1972,7 @@ var items = [
 				"required": 16
 			}
 		},
+		"expansion": 1,
 		"appearance": "glowing diamond sword",
 		"special": {
 			"effect": "Increases Water Defense"
@@ -1910,10 +2000,11 @@ var items = [
 				"required": 16
 			}
 		},
+		"expansion": 1,
 		"appearance": "glowing stone sword",
 		"lore": "A greatsword that is falling apart with rust from being submerged for aeons.",
 		"status": {
-			"slow": 11
+			"slow": 13
 		},
 		"upgrading": {
 			"type": 1
@@ -1942,6 +2033,7 @@ var items = [
 				"required": 16
 			}
 		},
+		"expansion": 1,
 		"appearance": "glowing stone axe",
 		"lore": "A seaweed covered hammer wielded by the abominations that feed on corpses in the Darkwater River.",
 		"upgrading": {
@@ -1966,6 +2058,7 @@ var items = [
 				"required": 30
 			}
 		},
+		"expansion": 1,
 		"appearance": "stone pickaxe",
 		"special": {
 			"effect": "Attacks Ignore Shield Stability"
@@ -1997,6 +2090,7 @@ var items = [
 				"required": 10
 			}
 		},
+		"expansion": 1,
 		"appearance": "fishing rod",
 		"lore": "An ordinary fishing pole that can be used to reel in treasures and enemies.",
 		"upgrading": {
@@ -2022,6 +2116,7 @@ var items = [
 				"required": 10
 			}
 		},
+		"expansion": 1,
 		"appearance": "wooden sword",
 		"lore": "A small backup dagger used mainly for performing critical hits.",
 		"special": {},
@@ -2039,14 +2134,15 @@ var items = [
 			"weight": 20
 		},
 		"damage": {
-			"physical": 32
+			"physical": 34
 		},
 		"attributes": {
 			"dexterity": {
 				"scaling": "S",
-				"required": 60
+				"required": 50
 			}
 		},
+		"price": 40000,
 		"appearance": "glowing diamond sword",
 		"special": {
 			"effect": "Charged Attacks Perform a Flurry"
@@ -2106,6 +2202,7 @@ var items = [
 				"required": 24
 			}
 		},
+		"expansion": 1,
 		"appearance": "glowing stone sword",
 		"lore": "A huge sword wielded by the statues in Darkwater Palace that bears a potent water enchantment.",
 		"upgrading": {
@@ -2130,6 +2227,8 @@ var items = [
 				"required": 40
 			}
 		},
+		"expansion": 1,
+		"price": 0,
 		"appearance": "glowing gold hoe",
 		"special": {
 			"skill": "animaShotCircle"
@@ -2159,6 +2258,7 @@ var items = [
 				"required": 20
 			}
 		},
+		"expansion": 1,
 		"appearance": "glowing diamond sword",
 		"lore": "A lighter variant of a sword commonly wielded by Darkwater Templars.",
 		"upgrading": {
@@ -2183,6 +2283,7 @@ var items = [
 				"required": 12
 			}
 		},
+		"expansion": 1,
 		"appearance": "iron pickaxe",
 		"lore": "A heavy hammer used by the constructs that serve the queen of Darkwater Sanctum. This one has been particularly corrupted by the powers of the abyss.",
 		"status": {
@@ -2278,6 +2379,8 @@ var items = [
 				"required": 50
 			}
 		},
+		"expansion": 1,
+		"price": 0,
 		"appearance": "glowing stone axe",
 		"lore": "The largest axe in existence. Very powerful when used by a skilled warrior, but extraordinarily slow.",
 		"upgrading": {
@@ -2304,6 +2407,8 @@ var items = [
 				"required": 50
 			}
 		},
+		"expansion": 1,
+		"price": 0,
 		"appearance": "glowing blaze rod",
 		"lore": "An extremely short brand that would be quite useful, except that its attacks come out randomly delayed (or not at all).",
 		"upgrading": {
@@ -2329,11 +2434,12 @@ var items = [
 				"required": 24
 			}
 		},
+		"expansion": 1,
 		"appearance": "shears",
 		"lore": "An insect claw coated in a layer of debilitating venom.",
 		"status": {
 			"petrify": 2,
-			"slow": 4
+			"slow": 5
 		},
 		"upgrading": {
 			"type": 1
@@ -2358,6 +2464,7 @@ var items = [
 				"required": 16
 			}
 		},
+		"expansion": 1,
 		"appearance": "glowing stick",
 		"lore": "A club crafted out of clay that has been enchanted with earth.",
 		"special": {
@@ -2389,6 +2496,8 @@ var items = [
 				"required": 30
 			}
 		},
+		"expansion": 1,
+		"price": 0,
 		"appearance": "glowing gold sword",
 		"lore": "A legendary blade that scales extremely well with the wielder's combat prowess. Wildly effective when used, but every swing has a small chance to make the sword freak out and disappear for 2 weeks.",
 		"upgrading": {
@@ -2414,8 +2523,9 @@ var items = [
 				"required": 60
 			}
 		},
+		"expansion": 1,
 		"appearance": "stick",
-		"lore": "An incredibly unwieldly club that can only be swung around by the strongest of the strong.",
+		"lore": "An incredibly unwieldy club that can only be swung around by the strongest of the strong.",
 		"special": {
 			"stamina_damage": 2
 		},
@@ -2446,6 +2556,7 @@ var items = [
 				"required": 5
 			}
 		},
+		"expansion": 1,
 		"appearance": "glowing blaze rod",
 		"lore": "An enchanted wand that was commonly used by a long extinct race.",
 		"upgrading": {
@@ -2470,6 +2581,7 @@ var items = [
 				"required": 8
 			}
 		},
+		"expansion": 1,
 		"appearance": "stone hoe",
 		"lore": "A staff wielded by Kotoborro mages to complement their spells.",
 		"upgrading": {
@@ -2498,6 +2610,7 @@ var items = [
 				"required": 16
 			}
 		},
+		"expansion": 1,
 		"appearance": "wood sword",
 		"lore": "A straight sword that is commonly wielded by the pygmy warriors of Kotoborro.",
 		"upgrading": {
@@ -2522,6 +2635,8 @@ var items = [
 				"required": 25
 			}
 		},
+		"expansion": 1,
+		"price": 0,
 		"appearance": "shears",
 		"special": {
 			"skill": "fangStrike"
@@ -2551,6 +2666,8 @@ var items = [
 				"required": 50
 			}
 		},
+		"expansion": 1,
+		"price": 0,
 		"appearance": "glowing wood axe",
 		"special": {
 			"skill": "forcefulBlow"
@@ -2562,7 +2679,7 @@ var items = [
 			"type": 1
 		},
 		"status": {
-			"confusion": 11
+			"confusion": 12
 		}
 	},
 	{
@@ -2587,6 +2704,8 @@ var items = [
 				"required": 8
 			}
 		},
+		"expansion": 1,
+		"price": 0,
 		"appearance": "glowing wood hoe",
 		"special": {
 			"skill": "neckSwipe",
@@ -2599,7 +2718,7 @@ var items = [
 			"type": 1
 		},
 		"status": {
-			"confusion": 6
+			"confusion": 7
 		}
 	},
 	{
@@ -2624,7 +2743,7 @@ var items = [
 		"special": {
 			"effect": "Increases Plunge Radius"
 		},
-		"lore": "An unwieldly hammer that leaves great destruction in its wake.",
+		"lore": "An unwieldy hammer that leaves great destruction in its wake.",
 		"upgrading": {
 			"type": 1
 		}
@@ -2727,9 +2846,9 @@ var items = [
 			"weight": 38
 		},
 		"damage": {
-			"earth": 36,
-			"fire": 30,
-			"physical": 10
+			"earth": 20,
+			"fire": 20,
+			"physical": 38
 		},
 		"attributes": {
 			"intelligence": {
@@ -2825,7 +2944,7 @@ var items = [
 			}
 		},
 		"appearance": "wood sword",
-		"lore": "An unsanitary scalpel wielded by one would take advantage of the pygmys' plight to use their corpses in medical research.",
+		"lore": "An unsanitary scalpel wielded by one would take advantage of the pygmies' plight to use their corpses in medical research.",
 		"status": {
 			"poison": 10,
 			"bleed": 6
@@ -2937,6 +3056,7 @@ var items = [
 				"required": 30
 			}
 		},
+		"price": 0,
 		"appearance": "glowing wood sword",
 		"special": {
 			"effect": "Increases Poison Damage"
@@ -2973,6 +3093,7 @@ var items = [
 				"required": 20
 			}
 		},
+		"price": 0,
 		"appearance": "glowing stone sword",
 		"special": {
 			"skill": "rejuvenate"
@@ -3108,6 +3229,7 @@ var items = [
 				"required": 10
 			}
 		},
+		"price": 16000,
 		"appearance": "glowing stick",
 		"special": {
 			"effect": "Reduces Sprint Stamina Cost"
@@ -3135,6 +3257,7 @@ var items = [
 				"required": 30
 			}
 		},
+		"price": 0,
 		"appearance": "glowing gold hoe",
 		"special": {
 			"skill": "animaShot"
@@ -3281,9 +3404,11 @@ var items = [
 				"required": 16
 			}
 		},
+		"price": 0,
 		"appearance": "glowing diamond sword",
 		"special": {
-			"skill": "phantasmSwap2"
+			"skill": "dimensionalRift",
+			"effect": "Charged Attacks Change Weapon Class"
 		},
 		"lore": "A blade of light extending from an enchanted hilt, wielded by the ruler of Phantasmagoria.",
 		"upgrading": {
@@ -3319,9 +3444,11 @@ var items = [
 				"required": 16
 			}
 		},
+		"price": 0,
 		"appearance": "glowing diamond sword",
 		"special": {
-			"skill": "phantasmSwap1"
+			"skill": "dimensionalRift",
+			"effect": "Charged Attacks Change Weapon Class"
 		},
 		"lore": "A blade of light extending from an enchanted hilt, wielded by the ruler of Phantasmagoria.",
 		"upgrading": {
@@ -3380,7 +3507,7 @@ var items = [
 		"appearance": "blaze rod",
 		"lore": "A baton wielded by servants in Phantasmagoria to disorient intruders.",
 		"status": {
-			"confusion": 9
+			"confusion": 10
 		},
 		"upgrading": {
 			"type": 1
@@ -3625,6 +3752,7 @@ var items = [
 				"required": 16
 			}
 		},
+		"price": 0,
 		"appearance": "wood hoe",
 		"lore": "A jagged, insect-like claw wielded in the off hand.",
 		"upgrading": {
@@ -3656,6 +3784,7 @@ var items = [
 				"required": 16
 			}
 		},
+		"price": 0,
 		"appearance": "wood hoe",
 		"special": {
 			"skill": "raptorFury"
@@ -3690,7 +3819,7 @@ var items = [
 			}
 		},
 		"appearance": "glowing iron axe",
-		"lore": "A large and unwieldly axe that has been completely frozen over.",
+		"lore": "A large and unwieldy axe that has been completely frozen over.",
 		"upgrading": {
 			"type": 1
 		}
@@ -3713,6 +3842,7 @@ var items = [
 				"required": 20
 			}
 		},
+		"price": 0,
 		"appearance": "glowing diamond sword",
 		"special": {
 			"skill": "dragonRush"
@@ -3743,6 +3873,7 @@ var items = [
 				"required": 20
 			}
 		},
+		"price": 0,
 		"appearance": "glowing iron hoe",
 		"special": {
 			"skill": "frostWalk"
@@ -3853,6 +3984,7 @@ var items = [
 				"required": 30
 			}
 		},
+		"price": 0,
 		"appearance": "glowing stone sword",
 		"special": {
 			"effect": "Bonus Damage VS Wooden Enemies"
@@ -3888,7 +4020,7 @@ var items = [
 			"stamina_damage": -1
 		},
 		"status": {
-			"slow": 6
+			"slow": 7
 		},
 		"upgrading": {
 			"type": 1
@@ -4074,6 +4206,7 @@ var items = [
 				"required": 16
 			}
 		},
+		"price": 0,
 		"appearance": "glowing gold sword",
 		"special": {
 			"skill": "impalingThrust"
@@ -4107,6 +4240,7 @@ var items = [
 				"required": 20
 			}
 		},
+		"price": 0,
 		"appearance": "glowing diamond sword",
 		"special": {
 			"skill": "emitGas"
@@ -4136,6 +4270,7 @@ var items = [
 				"required": 20
 			}
 		},
+		"price": 0,
 		"appearance": "bone",
 		"special": {
 			"skill": "shockwave",
@@ -4418,6 +4553,7 @@ var items = [
 				"required": 30
 			}
 		},
+		"price": 0,
 		"appearance": "glowing blaze rod",
 		"special": {
 			"skill": "spearCharge"
@@ -4451,6 +4587,7 @@ var items = [
 				"required": 15
 			}
 		},
+		"price": 0,
 		"appearance": "glowing diamond hoe",
 		"special": {
 			"skill": "bloodBlessing",
@@ -4484,6 +4621,7 @@ var items = [
 				"required": 30
 			}
 		},
+		"price": 0,
 		"appearance": "glowing diamond axe",
 		"special": {
 			"skill": "flamePlunge"
@@ -4572,6 +4710,7 @@ var items = [
 				"required": 20
 			}
 		},
+		"price": 24000,
 		"appearance": "glowing wood sword",
 		"lore": "A powerful greatsword wielded by the Crimson Warriors. It bashes through shields and causes bleeding in its victims.",
 		"upgrading": {
@@ -4601,6 +4740,7 @@ var items = [
 				"required": 20
 			}
 		},
+		"price": 24000,
 		"appearance": "glowing wood sword",
 		"lore": "A light weapon wielded by the Crimson Warriors. Its rending attacks tear apart its victims.",
 		"upgrading": {
@@ -4635,6 +4775,7 @@ var items = [
 				"required": 16
 			}
 		},
+		"price": 24000,
 		"appearance": "glowing gold sword",
 		"lore": "A powerful weapon wielded by the Sunlight Warriors. Its heavy attacks bash through the defenses of invaders.",
 		"upgrading": {
@@ -4666,6 +4807,7 @@ var items = [
 				"required": 16
 			}
 		},
+		"price": 24000,
 		"appearance": "glowing gold sword",
 		"lore": "A light weapon wielded by the Sunlight Warriors. Its quick attacks keep invaders at bay.",
 		"upgrading": {
@@ -4681,7 +4823,7 @@ var items = [
 		"swing": {
 			"class": "Light",
 			"range": 3,
-			"weight": 27
+			"weight": 22
 		},
 		"damage": {
 			"physical": 38
@@ -4692,6 +4834,7 @@ var items = [
 				"required": 20
 			}
 		},
+		"price": 0,
 		"appearance": "glowing wood sword",
 		"special": {
 			"skill": "slashCombo"
@@ -4837,6 +4980,7 @@ var items = [
 				"required": 15
 			}
 		},
+		"price": 3000,
 		"appearance": "stone axe",
 		"special": {
 			"effect": "Bonus Damage VS Wooden Enemies"
@@ -4864,9 +5008,11 @@ var items = [
 				"required": 14
 			}
 		},
+		"price": 0,
 		"appearance": "iron axe",
 		"special": {
-			"skill": "throw"
+			"skill": "demonicShriek",
+			"effect": "Charged Attacks Throw the Weapon"
 		},
 		"lore": "A light throwing axe wielded by the former Bandit Lord.",
 		"upgrading": {
@@ -5024,9 +5170,10 @@ var items = [
 		"attributes": {
 			"strength": {
 				"scaling": "S",
-				"required": 60
+				"required": 50
 			}
 		},
+		"price": 40000,
 		"appearance": "iron sword",
 		"special": {
 			"effect": "Charged Attacks Leave Damaging Shockwaves"
@@ -5061,6 +5208,7 @@ var items = [
 				"required": 16
 			}
 		},
+		"price": 0,
 		"appearance": "glowing iron pickaxe",
 		"special": {
 			"skill": "earthShaker",
@@ -5094,7 +5242,7 @@ var items = [
 		"appearance": "stone sword",
 		"lore": "A stone blade that has been coated in a fungal extract that causes a mild form of paralysis.",
 		"status": {
-			"slow": 6
+			"slow": 7
 		},
 		"upgrading": {
 			"type": 1
@@ -5175,9 +5323,10 @@ var items = [
 				"required": 8
 			}
 		},
+		"price": 0,
 		"appearance": "iron sword",
 		"special": {
-			"skill": "backstep"
+			"skill": "summonMonsters"
 		},
 		"lore": "A jagged blade wielded by the final king of Alendale. While the Darkwater and Pygmy civilizations left behind a legacy, Alendale disappeared without a trace.",
 		"upgrading": {
@@ -5295,6 +5444,7 @@ var items = [
 				"required": 20
 			}
 		},
+		"price": 0,
 		"appearance": "glowing wooden axe",
 		"special": {
 			"skill": "sweepCircle"
@@ -5543,7 +5693,7 @@ var items = [
 			}
 		},
 		"appearance": "iron axe",
-		"lore": "An unwieldly axe that takes above average strength to swing effectively.",
+		"lore": "An unwieldy axe that takes above average strength to swing effectively.",
 		"upgrading": {
 			"type": 1
 		}
@@ -5660,7 +5810,7 @@ var items = [
 	},
 	{
 		"id": "1000",
-		"name": "Barehanded*",
+		"name": "Barehanded",
 		"displayname": "&6Barehanded",
 		"swing": {
 			"class": "Light",
@@ -5680,15 +5830,15 @@ var items = [
 				"required": 1
 			}
 		},
-		"special": {},
 		"upgrading": {
-			"base_scaling": 0
+			"base_scaling": 0,
+			"type": 1
 		}
 	},
 	{
 		"id": "999",
-		"name": "Barehanded (Orb)*",
-		"displayname": "&6Barehanded+",
+		"name": "Barehanded 2",
+		"displayname": "&6Barehanded 2",
 		"swing": {
 			"class": "Light",
 			"range": 1,
@@ -5707,9 +5857,9 @@ var items = [
 				"required": 1
 			}
 		},
-		"special": {},
 		"upgrading": {
-			"base_scaling": 0
+			"base_scaling": 0,
+			"type": 1
 		}
 	}
 ]

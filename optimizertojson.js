@@ -65,8 +65,8 @@ const reader = new readlines("./" + target);
 */
 let results = [];
 
-const regex_prop = /\s+set {item\.([a-z]+)::(\d+)} to (?:"([^"]+)"|([\w\d\. -]+))/i;
-const regex_id = /\s+set {id\.([^}]+)} to (\d+)/i;
+const regex_prop = /\s+set {(?:temp\.)?item\.([a-z]+)::(\d+)} to (?:"([^"]+)"|([\w\d\. -]+))/i;
+const regex_id = /\s+set {(?:temp\.)?id\.([^}]+)} to (\d+)/i;
 
 let lineN;
 while (lineN = reader.next()) {
@@ -235,8 +235,16 @@ for (let j = ids.length; j--; j > 0) {
 				if (!weapon.special) weapon.special = {};
 				weapon.special.parry_window = Number(v);
 				break;
+			case "pric":
+				//Suspicious Man price override. If 0 cannot be sold by.
+				weapon.price = Number(v);
+				break;
+			case "expn":
+				//assumed expansion-only
+				weapon.expansion = Number(v);
+				break;
 			default:
-				console.log("unrecognized prop", props[i]);
+				console.log("unrecognized prop", weapon.id, props[i]);
 		}
 	}
 	output.push(weapon);
